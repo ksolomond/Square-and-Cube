@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="79384ce4-7c15-46a5-8216-735b2caec3ba" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="squareandcubeFlow" doc:id="e6deed8c-4204-45cd-829e-d81b780893d4" >
+		<http:listener doc:name="Listener" doc:id="ca9681d4-54ba-4914-a363-a52b91f3e7b0" config-ref="HTTP_Listener_config" path="/sqoareandcube"/>
+		<set-variable value="#[attributes.queryParams.number]" doc:name="Set Variable" doc:id="706580b9-2bfb-4486-97b4-4e095b9daf8d" variableName="number"/>
+		<set-payload value="#['a) The Square of ' ++ vars.number ++ ' is ' ++ vars.number * vars.number ++&#10;'   b) The Cube of ' ++ vars.number ++ ' is ' ++ vars.number * vars.number * vars.number]" doc:name="Set Payload" doc:id="f3202fd8-4d72-4c6d-b9c1-2975cf2203ea" />
+	</flow>
+</mule>
